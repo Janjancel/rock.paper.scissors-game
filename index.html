@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <link rel="shortcut icon" href="https://github.com/Janjancel/icon/blob/main/rock-paper-scissor-iconn.png?raw=true" type="image/x-icon">
+
+
+    <style>
+
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            /* font-family: "Poppins", sans-serif; */
+            font-family: monospace;;
+            transition: all 0.4s ease;
+        }
+
+        main {
+            background: #fff;
+        }
+
+        main.dark{
+            background: #020617;
+}
+        main.dark .container{
+            background: #0f172a;
+            border: solid 0.5px;
+            box-shadow: 0 5px 10px #1e293b;
+        }
+
+        main {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #F0F8FF;
+        }
+
+        main .container .icons i{
+            position: absolute;
+            right: 17px;
+            top: 17px;
+            height: 30px;
+            width: 30px;
+            background: #020617;
+            color: #fff;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 50%;
+            font-size: 14px;
+            cursor: pointer;
+            }
+        main.dark .container .icons i{
+            background: #0f172a;
+            color: #94a3b8;
+        
+            }
+        .container .icons i.fa-sun{
+            opacity: 0;
+            pointer-events: none;
+            }
+        main.dark .container .icons i.fa-sun{
+            opacity: 1;
+            pointer-events: auto;
+            font-size: 16px;
+            }
+
+        .result_images span {
+            text-align: center;
+        }
+
+        .container {
+            width: 560px;
+            padding: 2rem 7rem;
+            border-radius: 14px;
+            background: #fff;
+            color: #020617;
+            /* box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); */
+            /* border: solid 0.5px; */
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            margin: 20px;
+        }
+
+        .container h6 {
+            color: #020617;
+            font-size: 1.235rem;
+        }
+
+        main.dark .container h6 {
+            color: #94a3b8;
+        }
+
+        .result_images {
+            display: flex;
+            column-gap: 150px;
+        }
+        .container.start .user_result {
+            transform-origin: left;
+            animation: userShake 0.7s ease infinite;
+        }
+        @keyframes userShake {
+            50% {
+                transform: rotate(10deg);
+        }
+    }
+    
+        .container.start .cpu_result {
+            transform-origin: right;
+            animation: cpuShake 0.7s ease infinite;
+        }
+
+        @keyframes cpuShake {
+            50% {
+                transform: rotate(-10deg);
+        }
+    }
+        .result_images img {
+            width: 100px;
+        }
+        main.dark .result_images img {
+            filter: invert(48%) sepia(13%) saturate(3207%) hue-rotate(130deg) brightness(95%) contrast(80%);
+        }
+
+        .user_result img {
+            transform: rotate(-90deg) rotateY(180deg);
+        }
+        .cpu_result img {
+            transform: rotate(90deg);
+        }
+        .result {
+            text-align: center;
+            font-size: 2rem;
+            margin-top: 1.5rem;
+            color: #020617;
+        }
+
+        main.dark .result {
+            color: #94a3b8;
+        }
+    
+        .option_image img {
+            width: 50px;
+        }
+
+        .option_images {
+            display: flex;
+            align-items: center;
+            margin-top: 2.5rem;
+            justify-content: space-between;
+        }
+        .container.start .option_images {
+            pointer-events: none;
+        }
+        .option_image {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0.5;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+        .option_image:hover {
+            opacity: 1;
+        }
+        .option_image.active {
+            opacity: 1;
+        }
+        .option_image img {
+            pointer-events: none;
+        }
+
+        main.dark .option_image img {
+            filter: invert(48%) sepia(13%) saturate(3207%) hue-rotate(130deg) brightness(95%) contrast(80%);
+
+        }
+        .option_image p {
+            color: #020617;
+            font-size: 1.235rem;
+            margin-top: 1rem;
+            pointer-events: none;
+        }
+
+        main.dark .option_image p {
+            color: #94a3b8;
+        }
+
+        footer {
+            color: #020617;
+            text-align: center;
+            display: block;
+        }
+
+        /* # Mobile */
+        @media only screen and (max-width: 480px) {
+            .container {
+                width: 350px;
+                padding: 50px;
+                margin: 20px;
+                
+
+            }
+            .result_images img {
+                width: 70px;
+            }
+            
+        }
+
+            /* # Phone */
+        @media only screen and (min-width:389px) and (max-width:320px){
+            .container {
+                width: 250px;
+                padding: 50px;
+                margin: 20px;
+                    }
+
+        }
+
+        /* # Tablet */
+        @media only screen and (max-width:768px){
+            .container {
+                width: 500px;
+                padding: 60px;
+            }
+        }
+
+        </style>
+  </head>
+   
+  <body>
+    <main>
+        <div class="container">
+            <div class="icons">
+                <i class="fas fa-moon"></i>
+                <i class="fas fa-sun"></i>
+            </div>
+            <section class="result_field">
+                <div class="result_images">
+                <span class="user_result">
+                    <img src="https://github.com/Janjancel/icon/blob/main/rock.png?raw=true" alt="" />
+                    <h6>User</h6>
+                </span>
+                <span class="cpu_result">
+                    <img src="https://github.com/Janjancel/icon/blob/main/rock.png?raw=true" alt="" />
+                    <h6>Cpu</h6>
+                </span>
+                </div>
+                <h1 class="result">Let's Play!!</h1>
+            </section>
+
+            <section class="option_images">
+                <span class="option_image">
+                <img src="https://github.com/Janjancel/icon/blob/main/rock.png?raw=true" alt="" />
+                <p>Rock</p>
+                </span>
+                <span class="option_image">
+                <img src="https://github.com/Janjancel/icon/blob/main/paper.png?raw=true" alt="" />
+                <p>Paper</p>
+                </span>
+                <span class="option_image">
+                <img src="https://github.com/Janjancel/icon/blob/main/scissor.png?raw=true" alt="" />
+                <p>Scissors</p>
+                </span>
+            </section>
+        </div>
+    </main>
+    <footer>
+        <h6>created by: Jancel C. Peralta</h6>
+        2024
+    </footer>
+
+   <script>
+
+    const gameContainer = document.querySelector(".container"),
+    userResult = document.querySelector(".user_result img"),
+    cpuResult = document.querySelector(".cpu_result img"),
+    result = document.querySelector(".result"),
+    optionImages = document.querySelectorAll(".option_image");
+
+
+    optionImages.forEach((image, index) => {
+    image.addEventListener("click", (e) => {
+        image.classList.add("active");
+
+        userResult.src = cpuResult.src = "https://github.com/Janjancel/icon/blob/main/rock.png?raw=true";
+        result.textContent = "Wait...";
+
+        
+        optionImages.forEach((image2, index2) => {
+       
+        index !== index2 && image2.classList.remove("active");
+        });
+
+        gameContainer.classList.add("start");
+
+        
+        let time = setTimeout(() => {
+        gameContainer.classList.remove("start");
+
+       
+        let imageSrc = e.target.querySelector("img").src;
+       
+        userResult.src = imageSrc;
+
+        
+        let randomNumber = Math.floor(Math.random() * 3);
+        
+        let cpuImages = ["https://github.com/Janjancel/icon/blob/main/rock.png?raw=true", "https://github.com/Janjancel/icon/blob/main/paper.png?raw=true", "https://github.com/Janjancel/icon/blob/main/scissor.png?raw=true"];
+        
+        cpuResult.src = cpuImages[randomNumber];
+
+        
+        let cpuValue = ["R", "P", "S"][randomNumber];
+        
+        let userValue = ["R", "P", "S"][index];
+
+        
+        let outcomes = {
+            RR: "Draw",
+            RP: "Cpu",
+            RS: "User",
+            PP: "Draw",
+            PR: "User",
+            PS: "Cpu",
+            SS: "Draw",
+            SR: "Cpu",
+            SP: "User",
+        };
+
+        
+        let outComeValue = outcomes[userValue + cpuValue];
+
+        
+        result.textContent = userValue === cpuValue ? "Match Draw" : `${outComeValue} Won!!`;
+        }, 2500);
+    });
+    });
+
+    let main = document.querySelector("main"),
+     icons = document.querySelector(".icons");
+
+    icons.onclick = () => {
+    main.classList.toggle("dark");
+    };
+   </script>
+  </body>
+</html>
